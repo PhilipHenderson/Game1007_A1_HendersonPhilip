@@ -185,20 +185,18 @@
     <Media Include="..\Assets\aud\Engines.wav" />
     <Media Include="..\Assets\aud\Explode.wav" />
     <Media Include="..\Assets\aud\Fire.wav" />
-    <Media Include="..\Assets\aud\guile.mp3" />
-    <Media Include="..\Assets\aud\jump.wav" />
-    <Media Include="..\Assets\aud\slacker.wav" />
-    <Media Include="..\Assets\aud\Teleport.wav" />
-    <Media Include="..\Assets\aud\Title.mp3" />
-    <Media Include="..\Assets\aud\Wings.mp3" />
+    <Media Include="..\Assets\aud\GameMusic.wav" />
+    <Media Include="..\Assets\aud\TitleMusic.wav" />
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\Assets\img\EndStateBG.png" />
     <Image Include="..\Assets\img\ExitButton.png" />
     <Image Include="..\Assets\img\GameBackground.png" />
+    <Image Include="..\Assets\img\MenuButton.png" />
     <Image Include="..\Assets\img\NameTitle.png" />
     <Image Include="..\Assets\img\PlayButton.png" />
     <Image Include="..\Assets\img\ResumeButton.png" />
-    <Image Include="..\Assets\img\Sprites.png" />
+    <Image Include="..\Assets\img\spritesheet.png" />
     <Image Include="..\Assets\img\TitleBack.png" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

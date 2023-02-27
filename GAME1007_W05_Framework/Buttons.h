@@ -33,4 +33,12 @@ public:
 	ResumeButton(SDL_Rect, SDL_FRect, const char*);
 };
 
+class MenuButton : public Buttons
+{
+private:
+	void Execute();
+public:
+	MenuButton(SDL_Rect, SDL_FRect, const char*);
+};
+
 #endif

@@ -86,9 +86,9 @@ void TitleState::Enter()
 	TEMA::Load("../Assets/img/NameTitle.png", "NameImage");
 	TEMA::Load("../Assets/img/PlayButton.png", "PlayButton");
 
-	SOMA::Load("../Assets/aud/guile.mp3", "title", SOUND_MUSIC);
+	SOMA::Load("../Assets/aud/TitleMusic.wav", "title", SOUND_MUSIC);
 	SOMA::AllocateChannels(16);
-	SOMA::SetMusicVolume(32);
+	SOMA::SetMusicVolume(20);
 	SOMA::PlayMusic("title", -1, 2000);
 
 	AddChild("TitleBackgroundImage", new Image({ 0, 0, 1920, 1200 }, { 0.0f, 0.0f, 1024.0f, 768.0f }, "TitleBackgroundImage"));
@@ -124,26 +124,27 @@ void GameState::Enter()
 {
 	cout << "Entering GameState..." << endl;
 	TEMA::Load("../Assets/img/GameBackground.png", "bg");
-	TEMA::Load("../Assets/img/Sprites.png", "sprites");
+	TEMA::Load("../Assets/img/spritesheet2.png", "sprites");
 	SOMA::Load("../Assets/aud/Engines.wav", "engines", SOUND_SFX);
 	SOMA::Load("../Assets/aud/Fire.wav", "fire", SOUND_SFX);
 	SOMA::Load("../Assets/aud/Explode.wav", "explode", SOUND_SFX);
-	SOMA::Load("../Assets/aud/Teleport.wav", "teleport", SOUND_SFX);
-	SOMA::Load("../Assets/aud/guile.mp3", "wings", SOUND_MUSIC);
-	SOMA::SetSoundVolume(16);
-	SOMA::SetMusicVolume(32);
+	SOMA::Load("../Assets/aud/GameMusic.wav", "wings", SOUND_MUSIC);
+	SOMA::SetSoundVolume(10);
+	SOMA::SetMusicVolume(25);
 	SOMA::PlayMusic("wings", -1, 2000);
 
-	AddChild("bg", new Image({ 0, 0, 1024, 768 }, { 0, 0, 1024, 768 }, "bg"));
+	int bgWidth = 1024; // the width of the background image
+	AddChild("bg1", new Image({ 0, 0, 1024, 768 }, { 0, 0, 1024, 768 }, "bg"));
+	AddChild("bg2", new Image({ 0, 0, 1024, 768 }, { 0, 0, 1024, 768 }, "bg"));
 	AddChild("bullets", new BulletPool());
 	AddChild("ship", new Ship({ 0, 0, 100, 100 }, { 462.0f, 334.0f, 100.0f, 100.0f }));
-	AddChild("field", new AsteroidField(8));
+	AddChild("field", new AsteroidField(12));
 }
 void GameState::Update()
 {
 	if (EVMA::KeyPressed(SDL_SCANCODE_X))
 	{
-		STMA::ChangeState(new TitleState()); // Change to new TitleState
+		STMA::ChangeState(new EndState()); // Change to new EndState
 		return;
 	}
 	else if (EVMA::KeyPressed(SDL_SCANCODE_P))
@@ -166,6 +167,8 @@ void GameState::Update()
 			{
 				SOMA::PlaySound("explode");
 				RemoveChild("ship");
+				STMA::ChangeState(new EndState()); // Change to new EndState
+				return;
 			}
 		}
 	}
@@ -203,8 +206,24 @@ void GameState::Render()
 {
 	if (dynamic_cast<GameState*>(STMA::GetStates().back())) // only render if current state is GameState
 	{
+		int scrollSpeed = 2; // adjust as needed
+		backgroundX -= scrollSpeed;
+
+		Image* bg1 = static_cast<Image*>(GetChild("bg1"));
+		Image* bg2 = static_cast<Image*>(GetChild("bg2"));
+
+		bg1->GetDstP()->x = backgroundX;
+		bg2->GetDstP()->x = backgroundX + 1024;
+
+		if (bg2->GetDstP()->x <= 0) {
+			bg1->GetDstP()->x = 0;
+			bg2->GetDstP()->x = 1024;
+			backgroundX = 0;
+		}
+
 		SDL_SetRenderDrawColor(REMA::GetRenderer(), 100, 255, 0, 255);
 		SDL_RenderClear(REMA::GetRenderer());
+
 		State::Render();
 	}
 }
@@ -266,11 +285,18 @@ void PauseState::Exit()
 void EndState::Enter()
 {
 	cout << "Entering EndState!" << endl;
+	TEMA::Load("../Assets/img/EndStateBG.png", "EndBG");
+	TEMA::Load("../Assets/img/MenuButton.png", "MenuButton");
+	SOMA::Load("../Assets/aud/GameOverSound.wav", "GameOver", SOUND_SFX);
+	AddChild("EndBG", new Image({ 0, 0, 1920, 1200 }, { 0.0f, 0.0f, 1024.0f, 768.0f }, "EndBG"));
+	AddChild("MenuButton", new MenuButton({ 0, 0, 400, 100 }, { 412.0f, 550.0f, 200.0f, 50.0f }, "MenuButton"));
+	SOMA::PlaySound("GameOver");
 }
 void EndState::Update()
 {
 	if (EVMA::KeyPressed(SDL_SCANCODE_T))
 		STMA::ChangeState(new TitleState);
+	State::Update();
 }
 void EndState::Render()
 {
@@ -284,5 +310,7 @@ void EndState::Render()
 void EndState::Exit()
 {
 	cout << "Exiting EndState!" << endl;
+	SOMA::Unload("GameOver", SOUND_SFX);
+	State::Exit();
 }
 // ENDSTATE... END :D //

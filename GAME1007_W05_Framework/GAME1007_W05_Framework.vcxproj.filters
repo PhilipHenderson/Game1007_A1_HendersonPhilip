@@ -16,6 +16,15 @@
     <Filter Include="Managers">
       <UniqueIdentifier>{8adae342-7abd-493e-838b-300832b23f2f}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Resource Files\Music">
+      <UniqueIdentifier>{6b673801-8f71-497b-bce9-297241e56751}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\sfx">
+      <UniqueIdentifier>{f5112553-148d-4b6d-b31d-6c54486d796f}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Resource Files\Images">
+      <UniqueIdentifier>{8a776ae7-d362-4db3-a80e-9bb8def07b13}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Main.cpp">
@@ -133,55 +142,49 @@
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <Media Include="..\Assets\aud\guile.mp3">
-      <Filter>Resource Files</Filter>
+    <Media Include="..\Assets\aud\TitleMusic.wav">
+      <Filter>Resource Files\Music</Filter>
     </Media>
-    <Media Include="..\Assets\aud\jump.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="..\Assets\aud\slacker.wav">
-      <Filter>Resource Files</Filter>
+    <Media Include="..\Assets\aud\GameMusic.wav">
+      <Filter>Resource Files\Music</Filter>
     </Media>
     <Media Include="..\Assets\aud\Engines.wav">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\sfx</Filter>
     </Media>
     <Media Include="..\Assets\aud\Explode.wav">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\sfx</Filter>
     </Media>
     <Media Include="..\Assets\aud\Fire.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="..\Assets\aud\Teleport.wav">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="..\Assets\aud\Title.mp3">
-      <Filter>Resource Files</Filter>
-    </Media>
-    <Media Include="..\Assets\aud\Wings.mp3">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\sfx</Filter>
     </Media>
   </ItemGroup>
   <ItemGroup>
+    <Image Include="..\Assets\img\EndStateBG.png">
+      <Filter>Resource Files\Images</Filter>
+    </Image>
     <Image Include="..\Assets\img\ExitButton.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Images</Filter>
     </Image>
     <Image Include="..\Assets\img\GameBackground.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Images</Filter>
+    </Image>
+    <Image Include="..\Assets\img\MenuButton.png">
+      <Filter>Resource Files\Images</Filter>
     </Image>
     <Image Include="..\Assets\img\NameTitle.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Images</Filter>
     </Image>
     <Image Include="..\Assets\img\PlayButton.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Images</Filter>
     </Image>
     <Image Include="..\Assets\img\ResumeButton.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Images</Filter>
     </Image>
     <Image Include="..\Assets\img\TitleBack.png">
-      <Filter>Resource Files</Filter>
+      <Filter>Resource Files\Images</Filter>
     </Image>
-    <Image Include="..\Assets\img\Sprites.png">
-      <Filter>Resource Files</Filter>
+    <Image Include="..\Assets\img\spritesheet.png">
+      <Filter>Resource Files\Images</Filter>
     </Image>
   </ItemGroup>
 </Project>

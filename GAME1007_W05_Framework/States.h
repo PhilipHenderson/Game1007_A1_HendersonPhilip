@@ -45,6 +45,7 @@ public:
 	virtual void Exit();
 	virtual void Resume();
 private:
+	int backgroundX;
 	//Map for music track goes here
 	//Map for sound effects goes here
 };

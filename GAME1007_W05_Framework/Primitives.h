@@ -8,7 +8,10 @@ class Image : public Sprite
 public:
 	Image(SDL_Rect, SDL_FRect, const char*);
 	void Update() {};
-	void Render();
+	void Render() override;
+	SDL_FRect* GetDstP() {
+		return &m_dst;
+	}
 private:
 	std::string m_key;
 };

@@ -68,3 +68,10 @@ void ResumeButton::Execute()
 	return;
 }
 
+MenuButton::MenuButton(SDL_Rect s, SDL_FRect d, const char* k) :Buttons(s, d, k) {}
+
+void MenuButton::Execute()
+{
+	STMA::ChangeState(new TitleState());
+}
+
